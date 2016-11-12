@@ -22,6 +22,27 @@
 @property (weak, nonatomic) IBOutlet UITextField *textDisplay;
 @property (nonatomic) NSMutableArray *stack;
 
+@property (weak, nonatomic) IBOutlet UIButton *seventButton;
+@property (weak, nonatomic) IBOutlet UIButton *eight;
+@property (weak, nonatomic) IBOutlet UIButton *nine;
+@property (weak, nonatomic) IBOutlet UIButton *one;
+@property (weak, nonatomic) IBOutlet UIButton *two;
+@property (weak, nonatomic) IBOutlet UIButton *three;
+@property (weak, nonatomic) IBOutlet UIButton *four;
+@property (weak, nonatomic) IBOutlet UIButton *five;
+@property (weak, nonatomic) IBOutlet UIButton *six;
+@property (weak, nonatomic) IBOutlet UIButton *zero;
+@property (weak, nonatomic) IBOutlet UIButton *ce;
+@property (weak, nonatomic) IBOutlet UIButton *cl;
+@property (weak, nonatomic) IBOutlet UIButton *op1;
+@property (weak, nonatomic) IBOutlet UIButton *op2;
+@property (weak, nonatomic) IBOutlet UIButton *op3;
+@property (weak, nonatomic) IBOutlet UIButton *op4;
+@property (weak, nonatomic) IBOutlet UIButton *op5;
+@property (weak, nonatomic) IBOutlet UIButton *op6;
+@property (weak, nonatomic) IBOutlet UIButton *dot;
+@property (weak, nonatomic) IBOutlet UIButton *equal;
+
 @end
 
 @implementation ViewController
@@ -31,7 +52,56 @@
     [self setUpView];
     [self setUpData];
     [self updateOutput];
+    [self buttonProps];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)buttonProps{
+    [[self.seventButton layer] setBorderWidth:1.0f];
+    [[self.seventButton layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.one layer] setBorderWidth:1.0f];
+    [[self.one layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.two layer] setBorderWidth:1.0f];
+    [[self.two layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.three layer] setBorderWidth:1.0f];
+    [[self.three layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.four layer] setBorderWidth:1.0f];
+    [[self.four layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.five layer] setBorderWidth:1.0f];
+    [[self.five layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.six layer] setBorderWidth:1.0f];
+    [[self.six layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.seventButton layer] setBorderWidth:1.0f];
+    [[self.seventButton layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.eight layer] setBorderWidth:1.0f];
+    [[self.eight layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.nine layer] setBorderWidth:1.0f];
+    [[self.nine layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.zero layer] setBorderWidth:1.0f];
+    [[self.zero layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.ce layer] setBorderWidth:1.0f];
+    [[self.ce layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.cl layer] setBorderWidth:1.0f];
+    [[self.cl layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.op1 layer] setBorderWidth:1.0f];
+    [[self.op1 layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.op2 layer] setBorderWidth:1.0f];
+    [[self.op2 layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.op3 layer] setBorderWidth:1.0f];
+    [[self.op3 layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.op4 layer] setBorderWidth:1.0f];
+    [[self.op4 layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.op5 layer] setBorderWidth:1.0f];
+    [[self.op5 layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.op6 layer] setBorderWidth:1.0f];
+    [[self.op6 layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.dot layer] setBorderWidth:1.0f];
+    [[self.dot layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.equal layer] setBorderWidth:1.0f];
+    [[self.equal layer] setBorderColor:[UIColor blackColor].CGColor];
+    
+
+
 }
 
 -(void)setUpView{
@@ -139,7 +209,14 @@
             NSLog(@"TYPE_EMPTY");
             //concatenate
             self.currentInput.type = (TypeOfInput)TYPE_NUMBER;
-            self.currentInput.actualData =[ NSString stringWithFormat:@"%@%ld",self.currentInput.actualData,(long)self.tempInput.entry];
+            if(self.tempInput.entry != 10){
+                self.currentInput.actualData =[ NSString stringWithFormat:@"%@%ld",self.currentInput.actualData,(long)self.tempInput.entry];
+
+            }
+            else{
+                self.currentInput.actualData =[ NSString stringWithFormat:@"%@%@",self.currentInput.actualData,@"."];
+
+            }
             self.showData = self.currentInput.actualData;
             [self updateOutput];
             break;
