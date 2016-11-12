@@ -13,6 +13,7 @@
 		63571A671DD69F7A006E21A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63571A661DD69F7A006E21A9 /* Assets.xcassets */; };
 		63571A6A1DD69F7A006E21A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63571A681DD69F7A006E21A9 /* LaunchScreen.storyboard */; };
 		63571A721DD6A19C006E21A9 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63571A711DD6A19C006E21A9 /* ViewController.xib */; };
+		63571A751DD6CE83006E21A9 /* InputData.m in Sources */ = {isa = PBXBuildFile; fileRef = 63571A741DD6CE83006E21A9 /* InputData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		63571A691DD69F7A006E21A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63571A6B1DD69F7A006E21A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63571A711DD6A19C006E21A9 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		63571A731DD6CE83006E21A9 /* InputData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputData.h; sourceTree = "<group>"; };
+		63571A741DD6CE83006E21A9 /* InputData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,8 @@
 				63571A601DD69F7A006E21A9 /* ViewController.h */,
 				63571A611DD69F7A006E21A9 /* ViewController.m */,
 				63571A711DD6A19C006E21A9 /* ViewController.xib */,
+				63571A731DD6CE83006E21A9 /* InputData.h */,
+				63571A741DD6CE83006E21A9 /* InputData.m */,
 			);
 			path = appleCalculator;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63571A751DD6CE83006E21A9 /* InputData.m in Sources */,
 				63571A621DD69F7A006E21A9 /* ViewController.m in Sources */,
 				63571A5F1DD69F7A006E21A9 /* AppDelegate.m in Sources */,
 				63571A5C1DD69F7A006E21A9 /* main.m in Sources */,
