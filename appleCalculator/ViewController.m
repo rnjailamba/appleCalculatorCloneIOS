@@ -16,7 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setUpView];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)setUpView{
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
