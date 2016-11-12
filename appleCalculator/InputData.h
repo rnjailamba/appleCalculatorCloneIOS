@@ -16,6 +16,14 @@ typedef NS_ENUM(NSInteger, TypeOfInput) {
     
 };
 
+typedef NS_ENUM(NSInteger, OperatorPriority) {
+    PRIORITY_POWER = 1,
+    PRIORITY_TWO ,
+    PRIORITY_THREE
+    
+};
+
+
 @interface InputData : NSObject
 
 @property (nonatomic) NSInteger entry;
