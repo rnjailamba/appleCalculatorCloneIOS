@@ -1,7 +1,7 @@
 # appleCalculatorCloneIOS
 Clone of the inbuilt calculator app on ios.
 
-[!image](http://i.imgur.com/3zliQPJ.gif)
+![image](http://i.imgur.com/3zliQPJ.gif)
 
 ##iOS Task 
 Custom calculator</p>
