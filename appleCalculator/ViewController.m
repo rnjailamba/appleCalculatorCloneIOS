@@ -237,6 +237,7 @@
     NSInteger i = 0;
     CGFloat firstNum = 0.0, secNum;
     BOOL encounteredOp = false;
+    BOOL jobDone = false;
     NSInteger saveEncounteredOp = 0;
     OperatorPriority priorityNeeded;
     if([self.stack count] == 1){
@@ -262,81 +263,86 @@
     for(InputData *data in self.stack){
         NSLog(@"%ld %@ %ld",(long)data.type,data.actualData,(long)data.entry);
         [tempStack addObject:data];
-        if(encounteredOp == false){
-            if(data.type == TYPE_NUMBER){
-                if(encounteredOp == false){
-                    firstNum = [data.actualData floatValue];
+        
+        if(jobDone == false){
+            if(encounteredOp == false){
+                if(data.type == TYPE_NUMBER){
+                    if(encounteredOp == false){
+                        firstNum = [data.actualData floatValue];
+                    }
+                }
+                else if(data.type == TYPE_OPERATION){
+                    if(priorityNeeded == PRIORITY_POWER){
+                        if(data.entry == 3){
+                            encounteredOp = true;
+                            saveEncounteredOp = data.entry;
+                        }
+                    }
+                    if(priorityNeeded == PRIORITY_TWO){
+                        if(data.entry == 1 || data.entry == 2 || data.entry == 4){
+                            encounteredOp = true;
+                            saveEncounteredOp = data.entry;
+                        }
+                    }
+                    if(priorityNeeded == PRIORITY_THREE){
+                        if(data.entry == 5 || data.entry == 6){
+                            encounteredOp = true;
+                            saveEncounteredOp = data.entry;
+                        }
+                    }
+                }
+                
+            }
+            else{
+                if(data.type == TYPE_NUMBER){
+                    secNum = [data.actualData floatValue];
+                    [tempStack removeObjectAtIndex:i];
+                    [tempStack removeObjectAtIndex:i-1];
+                    switch (saveEncounteredOp) {
+                        case 1:
+                            NSLog(@"%% clicked");
+                            secNum = firstNum/secNum;
+                            break;
+                        case 2:
+                            NSLog(@"/ clicked");
+                            secNum = firstNum/secNum;
+                            break;
+                        case 3:
+                            NSLog(@"^ clicked");
+                            secNum = powf(firstNum, secNum);
+                            break;
+                        case 4:
+                            NSLog(@"* clicked");
+                            secNum = firstNum*secNum;
+                            
+                            break;
+                        case 5:
+                            NSLog(@"- clicked");
+                            secNum = firstNum-secNum;
+                            break;
+                        case 6:
+                            NSLog(@"+ clicked");
+                            secNum = firstNum+secNum;
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                    InputData *tmp = [InputData new];
+                    tmp.type = (TypeOfInput)TYPE_NUMBER;
+                    if(secNum == floorf(secNum)){
+                        tmp.actualData =[ NSString stringWithFormat:@"%ld",(long)(secNum)];
+                    }
+                    else{
+                        tmp.actualData =[ NSString stringWithFormat:@"%f",secNum];
+                    }
+                    tempStack[i-2] = tmp;
+                    jobDone = true;
+                    self.currentInput = tmp;
                 }
             }
-            else if(data.type == TYPE_OPERATION){
-                if(priorityNeeded == PRIORITY_POWER){
-                    if(data.entry == 3){
-                        encounteredOp = true;
-                        saveEncounteredOp = data.entry;
-                    }
-                }
-                if(priorityNeeded == PRIORITY_TWO){
-                    if(data.entry == 1 || data.entry == 2 || data.entry == 4){
-                        encounteredOp = true;
-                        saveEncounteredOp = data.entry;
-                    }
-                }
-                if(priorityNeeded == PRIORITY_THREE){
-                    if(data.entry == 5 || data.entry == 6){
-                        encounteredOp = true;
-                        saveEncounteredOp = data.entry;
-                    }
-                }
-            }
-
         }
-        else{
-            if(data.type == TYPE_NUMBER){
-                secNum = [data.actualData floatValue];
-                [tempStack removeObjectAtIndex:i];
-                [tempStack removeObjectAtIndex:i-1];
-                switch (saveEncounteredOp) {
-                    case 1:
-                        NSLog(@"%% clicked");
-                        secNum = firstNum/secNum;
-                        break;
-                    case 2:
-                        NSLog(@"/ clicked");
-                        secNum = firstNum/secNum;
-                        break;
-                    case 3:
-                        NSLog(@"^ clicked");
-                        secNum = powf(firstNum, secNum);
-                        break;
-                    case 4:
-                        NSLog(@"* clicked");
-                        secNum = firstNum*secNum;
 
-                        break;
-                    case 5:
-                        NSLog(@"- clicked");
-                        secNum = firstNum-secNum;
-                        break;
-                    case 6:
-                        NSLog(@"+ clicked");
-                        secNum = firstNum+secNum;
-                        break;
-                        
-                    default:
-                        break;
-                }
-                InputData *tmp = [InputData new];
-                tmp.type = (TypeOfInput)TYPE_NUMBER;
-                if(secNum == floorf(secNum)){
-                    tmp.actualData =[ NSString stringWithFormat:@"%ld",(long)(secNum)];
-                }
-                else{
-                    tmp.actualData =[ NSString stringWithFormat:@"%f",secNum];
-                }
-                tempStack[i-2] = tmp;
-                self.currentInput = tmp;
-            }
-        }
         ++i;
         
     }
@@ -365,6 +371,9 @@
             break;
         case 3:
             NSLog(@"TYPE_OPERATION");
+            if(self.tempInput.entry == 7){ // equals to
+                [self evaluateStack];
+            }
             break;
         case 4:
             NSLog(@"TYPE_EMPTY");
