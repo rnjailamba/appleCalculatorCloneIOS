@@ -20,5 +20,6 @@ typedef NS_ENUM(NSInteger, TypeOfInput) {
 
 @property (nonatomic) NSInteger entry;
 @property (assign, nonatomic) TypeOfInput type;
+@property (nonatomic) NSString *actualData;
 
 @end

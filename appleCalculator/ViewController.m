@@ -44,11 +44,11 @@
     
     self.currentInput = [[InputData alloc]init];
     self.currentInput.type = (TypeOfInput)TYPE_EMPTY;
-    self.currentInput.entry = -1;
+    self.currentInput.actualData = @"";//concatenated result
 
     self.prevInput = [InputData new];
     self.prevInput.type = (TypeOfInput)TYPE_EMPTY;
-    self.prevInput.entry = -1;
+    self.prevInput.actualData = @"";//concatenated result
     
     self.tempInput = [InputData new];
     self.tempInput.type = (TypeOfInput)TYPE_EMPTY;
@@ -135,6 +135,13 @@
     switch (self.currentInput.type) {
         case 1:
             NSLog(@"TYPE_NUMBER");
+        case 4:
+            NSLog(@"TYPE_EMPTY");
+            //concatenate
+            self.currentInput.type = (TypeOfInput)TYPE_NUMBER;
+            self.currentInput.actualData =[ NSString stringWithFormat:@"%@%ld",self.currentInput.actualData,(long)self.tempInput.entry];
+            self.showData = self.currentInput.actualData;
+            [self updateOutput];
             break;
         case 2:
             NSLog(@"TYPE_EDIT");
@@ -142,13 +149,14 @@
         case 3:
             NSLog(@"TYPE_OPERATION");
             break;
-        case 4:
-            NSLog(@"TYPE_EMPTY");
-            break;
             
         default:
             break;
     }
+}
+
+-(void)emptyArray{
+    [self.stack removeAllObjects];
 }
 
 -(void)handleEdit{
@@ -177,7 +185,6 @@
 
 -(void)updateOutput{
     self.textDisplay.text = self.showData;
-
 }
 
 
