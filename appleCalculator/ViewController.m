@@ -160,27 +160,35 @@
 }
 
 -(void)handleEdit{
-
-}
-
--(void)handleOperation{
-    switch (self.currentInput.type) {
+    switch (self.tempInput.entry) {
         case 1:
-            NSLog(@"TYPE_NUMBER");
+            NSLog(@"CE clickedd");
+            
+            if(self.currentInput.type == (TypeOfInput)TYPE_NUMBER){
+                if(self.currentInput.actualData.length != 1){
+                    self.currentInput.actualData = [self.currentInput.actualData substringToIndex:self.currentInput.actualData.length - 1];
+                    self.showData = self.currentInput.actualData;
+                    [self updateOutput];
+                }
+                else{
+                    [self setUpData];
+                    [self updateOutput];
+                }
+            }
             break;
         case 2:
-            NSLog(@"TYPE_EDIT");
-            break;
-        case 3:
-            NSLog(@"TYPE_OPERATION");
-            break;
-        case 4:
-            NSLog(@"TYPE_EMPTY");
+            NSLog(@"CL clickedd");
+            [self setUpData];
+            [self updateOutput];
             break;
             
         default:
             break;
     }
+}
+
+-(void)handleOperation{
+
 }
 
 -(void)updateOutput{
