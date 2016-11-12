@@ -1,7 +1,7 @@
 # appleCalculatorCloneIOS
 Clone of the inbuilt calculator app on ios.
 
-<p>iOS Task <br>
+##iOS Task 
 Custom calculator</p>
 
 <p>You have to create a custom calculator. There are a number of features of the calculator that your program must implement.</p>
