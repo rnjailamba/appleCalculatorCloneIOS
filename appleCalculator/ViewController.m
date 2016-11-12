@@ -240,12 +240,11 @@
     NSInteger saveEncounteredOp = 0;
     OperatorPriority priorityNeeded;
     if([self.stack count] == 1){
-        self.currentInput = [InputData new];
-        self.currentInput.type = (TypeOfInput)TYPE_NUMBER;
-        self.currentInput.actualData =[ NSString stringWithFormat:@"%@%ld",@"",(long)self.tempInput.entry];
         InputData *data = self.stack[0];
         self.showData = data.actualData;
         [self updateOutput];
+        [self printStack];
+        [self emptyArray];
         return;
     }
     
@@ -328,8 +327,14 @@
                 }
                 InputData *tmp = [InputData new];
                 tmp.type = (TypeOfInput)TYPE_NUMBER;
-                tmp.actualData =[ NSString stringWithFormat:@"%f",secNum];
+                if(secNum == floorf(secNum)){
+                    tmp.actualData =[ NSString stringWithFormat:@"%ld",(long)(secNum)];
+                }
+                else{
+                    tmp.actualData =[ NSString stringWithFormat:@"%f",secNum];
+                }
                 tempStack[i-2] = tmp;
+                self.currentInput = tmp;
             }
         }
         ++i;
