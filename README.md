@@ -53,3 +53,7 @@ which results in <br>
 
 <p>Note : <br>
 As part of the design of your program you should split your code into sensible classes.</p>
+
+![image](https://i.imgur.com/nUZ1GWz.jpg)
+![image](https://i.imgur.com/Q5mgTE2.jpg)
+
